@@ -10,11 +10,22 @@ public class player : MonoBehaviour
 	public Vector3 oldPos;
 	public bool isGrounded;
 
+	GameObject spawnPoint;
+	GameObject gameOverText;
+	GameObject gameCompleteText;
+
 	void Awake()
 	{
 		health = 3;
 		playerSpeed = 25;
 		isGrounded = true;
+		spawnPoint = GameObject.FindWithTag("SpawnPoint");
+		gameOverText = GameObject.FindWithTag("GameOverText");
+		gameCompleteText = GameObject.FindWithTag("GameCompleteText");
+
+		gameObject.transform.position = spawnPoint.transform.position;
+		gameOverText.SetActive(false);
+		gameCompleteText.SetActive(false);
 	}
 	
 	void FixedUpdate()
@@ -62,5 +73,20 @@ public class player : MonoBehaviour
 		}
 
 		gameObject.transform.position = newPos;
+
+		if (health <= 0)
+		{
+			Destroy(gameObject);
+			gameOverText.SetActive(true);
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.tag == "LevelEnd")
+		{
+			gameCompleteText.SetActive(true);
+			Destroy(gameObject);
+		}
 	}
 }
