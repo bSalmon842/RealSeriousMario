@@ -8,6 +8,8 @@ TagManager:
   - GameOverText
   - GameCompleteText
   - LevelEnd
+  - CheckPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX

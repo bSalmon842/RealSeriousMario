@@ -9,7 +9,6 @@ public class movingPlatform : MonoBehaviour
 	public bool isGoingRight;
 	public float platformSpeed;
 
-	private Vector3 oldPos;
 	public Vector3 dPlatform;
 
 	void Awake()
@@ -20,9 +19,7 @@ public class movingPlatform : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		oldPos = gameObject.transform.position;
-		
-		// Acceleration of the platform (derivative of the derivative of position)
+		//NOTE(bSalmon): Acceleration of the platform (derivative of the derivative of position)
 		Vector3 ddPlatform = new Vector3(0, 0, 0);
 		
 		if (isGoingRight)

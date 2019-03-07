@@ -6,11 +6,12 @@ public class player : MonoBehaviour
 {
 	public int health;
 	public float playerSpeed;
-	public Vector3 dPlayer = new Vector3(0, 0, 0); // Velocity of the player
+	public Vector3 dPlayer = new Vector3(0, 0, 0); //NOTE(bSalmon): Velocity of the player
 	public Vector3 oldPos;
 	public bool isGrounded;
 
-	GameObject spawnPoint;
+	public GameObject spawnPoint;
+	GameObject[] checkPoints;
 	GameObject gameOverText;
 	GameObject gameCompleteText;
 
@@ -24,6 +25,7 @@ public class player : MonoBehaviour
 		gameCompleteText = GameObject.FindWithTag("GameCompleteText");
 
 		gameObject.transform.position = spawnPoint.transform.position;
+		checkPoints = GameObject.FindGameObjectsWithTag("CheckPoint");
 		gameOverText.SetActive(false);
 		gameCompleteText.SetActive(false);
 	}
@@ -32,7 +34,7 @@ public class player : MonoBehaviour
 	{
 		oldPos = gameObject.transform.position;
 		
-		// Acceleration of the player (derivative of the derivative of position)
+		//NOTE(bSalmon): Acceleration of the player (derivative of the derivative of position)
 		Vector3 ddPlayer = new Vector3(0, 0, 0);
 		
 		if (Input.GetAxis("Horizontal") < 0)
@@ -73,6 +75,14 @@ public class player : MonoBehaviour
 		}
 
 		gameObject.transform.position = newPos;
+
+		foreach (GameObject check in checkPoints)
+		{
+			if (check.GetComponent<checkpoint>().isActiveCheckpoint)
+			{
+				spawnPoint = check;
+			}
+		}
 
 		if (health <= 0)
 		{

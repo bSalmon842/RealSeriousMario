@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spikeHazard : harmfulEntity
+public class electricField : harmfulEntity
 {
 	void OnCollisionEnter2D(Collision2D col)
 	{
