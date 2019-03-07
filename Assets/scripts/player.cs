@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class player : MonoBehaviour
 	GameObject[] checkPoints;
 	GameObject gameOverText;
 	GameObject gameCompleteText;
+
+	public Text healthText;
 
 	void Awake()
 	{
@@ -34,6 +37,8 @@ public class player : MonoBehaviour
 	{
 		oldPos = gameObject.transform.position;
 		
+		healthText.text = "Lives: " + health;
+
 		//NOTE(bSalmon): Acceleration of the player (derivative of the derivative of position)
 		Vector3 ddPlayer = new Vector3(0, 0, 0);
 		
