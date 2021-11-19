@@ -1,5 +1,5 @@
 ## Overview
-Programming Test for Real Serious Games by applicant Brock Salmon.
+Programming Test for Real Serious Games by applicant Brock Salmon. Made in 48 hours
 
 ## Features
 - All Basic Brief Requirements
